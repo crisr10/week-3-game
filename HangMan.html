@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HangMan</title>
+</head>
+<body>
+<h1>Hang Man Game</h1>
+<h2>Guess the hidden country<h2>
+<p id="WORD"></p>
+
+<br/>
+<div>
+	<p>
+		Tries remaining: <span id="tries">6</span>
+		<br/>
+		There are <span id="numLetters">0</span> letters in this word.
+	</p>
+</div>
+
+<script>
+
+var country = ['COLOMBIA','ARGENTINA','BRAZIL'];
+var dashes = new Array();
+var looseLetters = new Array ();
+
+
+var randomWord = country[Math.floor(Math.random()*country.length)];
+document.getElementById("WORD").innerHTML = randomWord;
+
+
+var hiddenWord = randomWord.split('');
+console.log(hiddenWord);
+for ( i=0; i<randomWord.length; i++) {
+	dashes[i] = "_ ";
+}
+var wordU = dashes.join("");
+document.getElementById("WORD").innerHTML = wordU;
+document.getElementById("numLetters").innerHTML = hiddenWord.length;
+
+</script>
+</body>
+</html>
