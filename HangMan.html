@@ -14,6 +14,8 @@
 		Tries remaining: <span id="tries">6</span>
 		<br/>
 		There are <span id="numLetters">0</span> letters in this word.
+		<br/>
+		Guessed Letters: <span id="guessedLetters"><span>
 	</p>
 </div>
 
@@ -21,21 +23,69 @@
 
 var country = ['COLOMBIA','ARGENTINA','BRAZIL'];
 var dashes = new Array();
-var looseLetters = new Array ();
+var guessedLetters = new Array();
+var isCorrect = true 
 
 
-var randomWord = country[Math.floor(Math.random()*country.length)];
-document.getElementById("WORD").innerHTML = randomWord;
+	var randomWord = country[Math.floor(Math.random()*country.length)];
+	document.getElementById("WORD").innerHTML = randomWord;
 
 
-var hiddenWord = randomWord.split('');
-console.log(hiddenWord);
-for ( i=0; i<randomWord.length; i++) {
-	dashes[i] = "_ ";
-}
-var wordU = dashes.join("");
-document.getElementById("WORD").innerHTML = wordU;
-document.getElementById("numLetters").innerHTML = hiddenWord.length;
+	var hiddenWord = randomWord.split('');
+	console.log(hiddenWord);
+
+// this is what replaces the randomWord inside the empty array hiddenWord, cerating 
+	for ( i=0; i<randomWord.length; i++) {
+		dashes[i] = "_ ";
+	}
+
+	var wordU = dashes.join("");
+	document.getElementById("WORD").innerHTML = wordU;
+	document.getElementById("numLetters").innerHTML = hiddenWord.length;
+	console.log(dashes);
+
+
+	document.onkeyup = function(event) {
+		var userGuess = String.fromCharCode(event.keyCode).toUpperCase();
+		guessedLetters.push(userGuess);
+		document.getElementById("guessedLetters").innerHTML = guessedLetters;
+		
+		
+			for ( i=0; i<randomWord.length; i++) {
+				if (hiddenWord[i] == userGuess) {
+					dashes[i]=userGuess;
+				}
+
+			}
+			var wordU = dashes.join("");
+			document.getElementById("WORD").innerHTML = wordU;
+	}
+		
+	
+
+
+
+        // reduce the number of guesses left by one
+
+        // get the user input as a lower case letter
+
+        // add the guess to the an array of guessed letters
+
+        // update html for guesses made and number of guesses
+
+        // if there are still guesses left:
+            // check for a match
+                // if matching, update win count and html
+                // reset the game
+
+        // if there are no guesses left
+
+            // update loss count and html
+            // reset the game
+
+
+
+
 
 </script>
 </body>
