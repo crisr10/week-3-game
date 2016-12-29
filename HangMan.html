@@ -2,91 +2,51 @@
 <html>
 <head>
 	<title>HangMan</title>
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<h1>Hang Man Game</h1>
-<h2>Guess the hidden country<h2>
-<p id="WORD"></p>
+<div class='container'>
+	<div class="jumbotron">
+		<h1>Hangman Game</h1>
+		<p>This is a Game of Thrones based Hangman. The ojective of the game is to guess the correct caracter.</p>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">Character To Guess</div>
+		<div class="panel-body">
+			<p id="hiddenWord"></p>
+		</div>
+	</div>
 
-<br/>
-<div>
-	<p>
-		Tries remaining: <span id="tries">6</span>
-		<br/>
-		There are <span id="numLetters">0</span> letters in this word.
-		<br/>
-		Guessed Letters: <span id="guessedLetters"><span>
-	</p>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			Wrong Guesses: <span id='wrongGuesses'>0</span>
+		</div>
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-body">
+			Guesses Left: <span id='guessesLeft'>0</span>
+		</div>
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-body">
+			Wins Counter: <span id='wins'>0</span>
+		</div>
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-body">
+			Losses Counter: <span id='losses'>0</span>
+		</div>
+	</div>
 </div>
 
-<script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<!--link to JavaScript -->
+	<script src="app.js" type="text/javascript"></script>
 
-var country = ['COLOMBIA','ARGENTINA','BRAZIL'];
-var dashes = new Array();
-var guessedLetters = new Array();
-var isCorrect = true 
-
-
-	var randomWord = country[Math.floor(Math.random()*country.length)];
-	document.getElementById("WORD").innerHTML = randomWord;
-
-
-	var hiddenWord = randomWord.split('');
-	console.log(hiddenWord);
-
-// this is what replaces the randomWord inside the empty array hiddenWord, cerating 
-	for ( i=0; i<randomWord.length; i++) {
-		dashes[i] = "_ ";
-	}
-
-	var wordU = dashes.join("");
-	document.getElementById("WORD").innerHTML = wordU;
-	document.getElementById("numLetters").innerHTML = hiddenWord.length;
-	console.log(dashes);
-
-
-	document.onkeyup = function(event) {
-		var userGuess = String.fromCharCode(event.keyCode).toUpperCase();
-		guessedLetters.push(userGuess);
-		document.getElementById("guessedLetters").innerHTML = guessedLetters;
-		
-		
-			for ( i=0; i<randomWord.length; i++) {
-				if (hiddenWord[i] == userGuess) {
-					dashes[i]=userGuess;
-				}
-
-			}
-			var wordU = dashes.join("");
-			document.getElementById("WORD").innerHTML = wordU;
-	}
-		
-	
-
-
-
-        // reduce the number of guesses left by one
-
-        // get the user input as a lower case letter
-
-        // add the guess to the an array of guessed letters
-
-        // update html for guesses made and number of guesses
-
-        // if there are still guesses left:
-            // check for a match
-                // if matching, update win count and html
-                // reset the game
-
-        // if there are no guesses left
-
-            // update loss count and html
-            // reset the game
-
-
-
-
-
-</script>
 </body>
 </html>
